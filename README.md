@@ -42,9 +42,9 @@ ThreatLens is a SOC automation platform that streamlines the investigation of In
 Current Milestone:
 
 - [x] Project Initialization
-- [ ] FastAPI Backend
-- [ ] IOC Validation Engine
-- [ ] Threat Intelligence Connectors
+- [x] FastAPI Backend
+- [x] IOC Validation Engine
+- [x] Threat Intelligence Connectors
 - [ ] Correlation Engine
 - [ ] Risk Scoring
 - [ ] Report Generation
