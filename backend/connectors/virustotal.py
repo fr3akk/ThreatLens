@@ -1,6 +1,7 @@
 from .base import BaseThreatConnector
 from backend.core.config import settings
 from backend.api.schemas.threat_response import ThreatResponse, ThreatSummary
+from backend.schemas.ioc import IOCType
 
 import requests
 
@@ -9,8 +10,8 @@ class VirusTotalConnector(BaseThreatConnector):
     name = "VirusTotal"
     BASE_URL = "https://www.virustotal.com/api/v3"
 
-    def lookup(self, ioc: str, ioc_type: str):
-        if ioc_type != "ipv4":
+    def lookup(self, ioc: str, ioc_type: IOCType):
+        if ioc_type != IOCType.IP:
             raise NotImplementedError("Currently only IPv4 lookups are supported.")
 
         headers = {
