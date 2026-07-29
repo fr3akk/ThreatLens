@@ -2,7 +2,7 @@ from fastapi import APIRouter
 
 from backend.ioc.detector import detect_ioc_type
 from backend.schemas.ioc import IOCRequest, IOCResponse
-from backend.api.schemas.threat_response import ThreatResponse
+from backend.api.schemas.enrichment import EnrichmentResponse
 from backend.services.ioc_enrichment import IOCEnrichmentService
 
 router = APIRouter(prefix="/ioc", tags=["IOC"])
@@ -28,7 +28,7 @@ def detect_ioc(request: IOCRequest):
         value=request.ioc.strip()
     )
 
-@router.post("/enrich", response_model=ThreatResponse)
+@router.post("/enrich", response_model=EnrichmentResponse)
 def enrich_ioc(request: IOCRequest):
     """
     Enrich an IOC using the configured threat intelligence providers.
