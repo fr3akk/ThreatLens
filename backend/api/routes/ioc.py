@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from fastapi import HTTPException
 
 from backend.ioc.detector import detect_ioc_type
 from backend.schemas.ioc import IOCRequest, IOCResponse
@@ -28,6 +29,7 @@ def detect_ioc(request: IOCRequest):
         value=request.ioc.strip()
     )
 
+
 @router.post("/enrich", response_model=EnrichmentResponse)
 def enrich_ioc(request: IOCRequest):
     """
@@ -36,4 +38,10 @@ def enrich_ioc(request: IOCRequest):
 
     service = IOCEnrichmentService()
 
-    return service.enrich(request.ioc)
+    try:
+        return service.enrich(request.ioc)
+    except NotImplementedError as exc:
+        raise HTTPException(
+            status_code=501,
+            detail=str(exc),
+        )

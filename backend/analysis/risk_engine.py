@@ -30,4 +30,3 @@ class RiskEngine:
             score=score,
             severity=severity
         )
-
